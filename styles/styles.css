@@ -52,51 +52,70 @@ header {
     justify-content: space-between;
 }
 
-
-/* || SHOPPING LIST || */
-main {
-    display: grid;
-    grid-template-columns: 70px calc(100% - 140px) 70px;
-    grid-template-areas: "favorites list settings";
-    margin: 1rem auto;
-    max-width: 1000px;
-}
-
-#fav-link {
-    grid-area: favorites;
-    margin-left: 0;
-    border-left-width: 0;
-}
-
-#settings-link {
-    grid-area: settings;
-    margin-right: 0;
-    border-right-width: 0;
-    width: 70px;
-}
-
-.page-tab {
-    padding: 1rem;
-    height: min-content;
+/* || PAGE LAYOUT || */
+h2 {
+    margin: 1rem .5rem;
+    padding: .5rem 2rem;
+    width: max-content;
     background-color: var(--accent-color-1);
-    border: var(--primary-color) solid 3px;
-    border-radius: 5px;
-    text-align: center;
+    border: var(--primary-color) ridge 4px;
 }
 
-#shopping-list {
-    grid-area: list;
-    margin: auto 1rem;
+#main-div {
+    display: grid;
+    grid-template-columns: calc(100% - 50px) 50px;
+    grid-template-rows: repeat(auto-fill, 80px);
+    /* grid-template-areas: 
+    "page tab1"
+    "page tab2"
+    "page tab3"; */
+    margin: auto;
+    padding: 1rem;
+    max-width: 850px;
+    justify-content: center;
+}
+
+.page-content {
+    /* grid-area: page; */
+    grid-row: 1/4;
+    margin-right: 0;
     padding: 2px .5rem;
-    min-height: 200px;
-    /* max-width: 800px; */
+    min-height: 320px;
+    max-width: 800px;
     border: var(--main-text-color) solid 1px;
     background-color: var(--accent-color-2);
 }
 
+/* || SHOPPING LIST || */
+#list-tab {
+    /* grid-area: tab1; */
+}
+
+#favorites-tab {
+    /* grid-area: tab2; */
+}
+
+#settings-tab {
+    /* grid-area: tab3; */
+}
+
+.page-tab {
+    padding-top: calc(50% - 1.2rem);
+    width: 50px;
+    height: 80px;
+    background-color: var(--accent-color-1);
+    border: var(--primary-color) solid 3px;
+    border-left-width: 0;
+    border-radius: 0 35px 35px 0;
+    text-align: center;
+    font-size: xx-large;
+}
+
+/* #shopping-list {
+} */
+
 #item-list li {
-    /* fix this ↓ */
-    list-style-type: symbols("▢");
+    list-style-type: none;
     font-size: larger;
 }
 

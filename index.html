@@ -20,22 +20,26 @@
     <body>
         <header id="dynamic-header"></header>
         <main>
-            <div class="page-tab" id="fav-link"><a href="favorites.html">⭐</a></div>
-            <div class="page-tab" id="settings-link"><a href="settings.html">⚙</a></div>
-            <div id="shopping-list">
-                <div id="list-btns">
-                    <button id="opt-dropdown">▽⋮⫶🔻</button>
-                    <div id="list-opt">
-                        <button id="unmark-all">▢🔲</button>
-                        <button id="mark-all">√✅✔</button>
-                        <button id="clear-list">✖</button>
+            <h2>Shopping List</h2>
+            <div id="main-div">
+                <div class="page-tab current" id="list-tab"><a href="index.html">📃</a></div>
+                <div class="page-tab" id="favories-tab"><a href="favorites.html">⭐</a></div>
+                <div class="page-tab" id="settings-tab"><a href="settings.html">⚙</a></div>
+                <div class="page-content" id="shopping-list">
+                    <div id="list-btns">
+                        <button id="opt-dropdown">▽⋮⫶🔻</button>
+                        <div id="list-opt">
+                            <button id="unmark-all">▢🔲</button>
+                            <button id="mark-all">√✅✔</button>
+                            <button id="clear-list">✖</button>
+                        </div>
+                        <button id="add-item">➕+</button>
                     </div>
-                    <button id="add-item">➕+</button>
-                </div>
-                <div>
-                    <ul id="item-list">
-                        <li>test item</li>
-                    </ul>
+                    <div>
+                        <ul id="item-list">
+                            <li>test item</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </main>

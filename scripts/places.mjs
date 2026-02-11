@@ -30,13 +30,16 @@ async function searchNearby(center, radius) {
     // define request options for Nearby API
     const request = {
         fields: [
+            'id',
             'displayName',
+            'location',
+            'websiteURI'
         ],
         locationRestriction: {
             center,
             radius,
         },
-        includePrimaryTypes: ["food_store", "grocery_store", "market", "supermarket", "asian_grocery_store", "butcher_shop", "store"]
+        includedTypes: ["food_store", "grocery_store", "market", "supermarket", "asian_grocery_store", "butcher_shop", "store"]
     };
     
     // call searchNearby to get a list of Place objects containing place details
