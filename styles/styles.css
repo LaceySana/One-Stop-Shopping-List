@@ -19,6 +19,7 @@
 
 body {
     font-family: var(--main-font);
+    background-color: var(--secondary-color);
 }
 
 h2, h3, h4, h5, h6 {
@@ -90,6 +91,7 @@ main {
     min-height: 200px;
     /* max-width: 800px; */
     border: var(--main-text-color) solid 1px;
+    background-color: var(--accent-color-2);
 }
 
 #item-list li {
