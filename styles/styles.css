@@ -1,0 +1,119 @@
+:root {
+    --primary-color: #0f766eff;
+    --secondary-color: #a7d7c5ff;
+    --accent-color-1: #f59e0bff;
+    --accent-color-2: #f9fafbff;
+    --main-text-color: #1f2933ff;
+    --site-name-font: "Caveat Brush", cursive;
+    --heading-font: "Fredericka the Great", serif;
+    --main-font: "Slackside One", cursive;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* || GENERAL || */
+
+body {
+    font-family: var(--main-font);
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+}
+
+li {
+    margin: auto 2rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    border: none;
+    background: none;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, .5);
+}
+
+/* || HEADER || */
+#site-name {
+    font-family: var(--site-name-font);
+}
+
+header {
+    padding: 30px;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* || SHOPPING LIST || */
+main {
+    display: grid;
+    grid-template-columns: 70px calc(100% - 140px) 70px;
+    grid-template-areas: "favorites list settings";
+    margin: 1rem auto;
+    max-width: 1000px;
+}
+
+#fav-link {
+    grid-area: favorites;
+    margin-left: 0;
+    border-left-width: 0;
+}
+
+#settings-link {
+    grid-area: settings;
+    margin-right: 0;
+    border-right-width: 0;
+    width: 70px;
+}
+
+.page-tab {
+    padding: 1rem;
+    height: min-content;
+    background-color: var(--accent-color-1);
+    border: var(--primary-color) solid 3px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#shopping-list {
+    grid-area: list;
+    margin: auto 1rem;
+    padding: 2px .5rem;
+    min-height: 200px;
+    /* max-width: 800px; */
+    border: var(--main-text-color) solid 1px;
+}
+
+#item-list li {
+    /* fix this ↓ */
+    list-style-type: symbols("▢");
+    font-size: larger;
+}
+
+#list-btns {
+    display: flex;
+    justify-content: space-between;
+}
+
+#opt-dropdown {
+    display: inline-block;
+}
+
+#list-opt {
+    display: none;
+}
+
+/* || FOOTER || */
+footer {
+    padding: 20px;
+    background-color: var(--primary-color);
+    text-align: center;
+}
