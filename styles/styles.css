@@ -32,12 +32,14 @@ li {
 
 a {
     text-decoration: none;
+    cursor: pointer;
 }
 
 button {
     border: none;
     background: none;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, .5);
+    cursor: pointer;
 }
 
 /* || HEADER || */
@@ -63,40 +65,24 @@ h2 {
 
 #main-div {
     display: grid;
-    grid-template-columns: calc(100% - 50px) 50px;
-    grid-template-rows: repeat(auto-fill, 80px);
-    /* grid-template-areas: 
-    "page tab1"
-    "page tab2"
-    "page tab3"; */
+    grid-template-columns: 1fr 50px;
+    grid-template-rows: 80px 80px auto;
     margin: auto;
     padding: 1rem;
     max-width: 850px;
+    min-height: max-content;
     justify-content: center;
 }
 
 .page-content {
-    /* grid-area: page; */
-    grid-row: 1/4;
+    grid-column: 1 / 2;
+    grid-row: 1 / -1;
     margin-right: 0;
     padding: 2px .5rem;
-    min-height: 320px;
     max-width: 800px;
+    min-height: max-content;
     border: var(--main-text-color) solid 1px;
     background-color: var(--accent-color-2);
-}
-
-/* || SHOPPING LIST || */
-#list-tab {
-    /* grid-area: tab1; */
-}
-
-#favorites-tab {
-    /* grid-area: tab2; */
-}
-
-#settings-tab {
-    /* grid-area: tab3; */
 }
 
 .page-tab {
@@ -111,6 +97,8 @@ h2 {
     font-size: xx-large;
 }
 
+/* || SHOPPING LIST || */
+
 /* #shopping-list {
 } */
 
@@ -122,6 +110,11 @@ h2 {
 #list-btns {
     display: flex;
     justify-content: space-between;
+}
+
+.list-btn {
+    font-size: x-large;
+    margin: 5px;
 }
 
 #opt-dropdown {
