@@ -2,10 +2,10 @@ import { loadHeaderFooter, qs, setClick } from "./utils.mjs";
 
 loadHeaderFooter();
 
-setClick("#add-item", getNewItem);
+setClick("#add-item", addNewItem);
 
 
-function getNewItem() {
+function addNewItem() {
     let inputDiv = qs("#input-div");
     if (!inputDiv) {
         const listMenu = qs("#list-btns");
@@ -33,6 +33,9 @@ function getNewItem() {
             li.innerHTML = `
             <button class="mark-item">⬜<button> ${newItem}
             `;
+
+            const markBtns = document.querySelectorAll(".mark-items");
+            
     
             list.appendChild(li);
         }
