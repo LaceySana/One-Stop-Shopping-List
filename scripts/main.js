@@ -1,9 +1,12 @@
-import { loadHeaderFooter, qs, setClick } from "./utils.mjs";
+import ListItem, { listItemTemplate } from "./ListItem.mjs";
+import { getLocalStorage, loadHeaderFooter, qs, renderListWithTemplate, setClick } from "./utils.mjs";
 
 loadHeaderFooter();
 
-setClick("#add-item", addNewItem);
+const storedList = getLocalStorage("shopping-list") || [];
+renderListWithTemplate(storedList, listItemTemplate, qs("#item-list"));
 
+setClick("#add-item", addNewItem);
 
 function addNewItem() {
     let inputDiv = qs("#input-div");
@@ -20,36 +23,26 @@ function addNewItem() {
         inputLabel.appendChild(itemInput);
         itemInput.addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
-                addItem();
+                const newItem = new ListItem(itemInput.value);
+                newItem.init();
+                inputDiv.parentNode.removeChild(inputDiv);
             }
         })
-    
-        const addItem = function () {
-            const newItem = itemInput.value;
-            inputDiv.parentNode.removeChild(inputDiv);
-            
-            const list = qs("#item-list");
-            const li = document.createElement("li");
-            li.innerHTML = `
-            <button class="mark-item">⬜<button> ${newItem}
-            `;
-
-            const markBtns = document.querySelectorAll(".mark-items");
-            
-    
-            list.appendChild(li);
-        }
         
         const inputBtn = document.createElement("input");
         inputBtn.setAttribute("id", "inputSubmit");
         inputBtn.setAttribute("type", "submit");
         inputBtn.setAttribute("value", "Add Item");
-    
+        
         inputDiv.appendChild(inputLabel);
         inputDiv.appendChild(inputBtn);
         itemInput.focus();
-        
-        setClick("#inputSubmit", addItem);
+    
+        setClick("#inputSubmit", () => {
+            const newItem = new ListItem(itemInput.value);
+            newItem.init();
+            inputDiv.parentNode.removeChild(inputDiv);
+        });
     } else {
         inputDiv.parentNode.removeChild(inputDiv);
     }
