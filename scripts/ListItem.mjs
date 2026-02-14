@@ -2,7 +2,7 @@ import { getLocalStorage, qs, setLocalStorage } from "./utils.mjs";
 
 export function listItemTemplate(item) {
     return `
-        <li><button class="mark-item"><button> ${item.name} <button class="remove-item">✖<button></li>
+        <li><button class="mark-item"></button>${item.name}<button class="remove-item"></button></li>
         `;
 };
 
@@ -18,20 +18,36 @@ export default class ListItem {
         this.addItemToLocalStorage();
     }
 
-    addItemToHTML() {
-        const list = qs("#item-list");
-        list.innerHTML += listItemTemplate(this.name);
-
-        list.addEventListener("click", (e) => {
-            if (e.target.classList.contains("mark-item")) {
-                e.target.classList.toggle("marked");
-            }
-        })
-    }
-
     addItemToLocalStorage() {
         const storedList = getLocalStorage("shopping-list") || [];
         storedList.push(this);
         setLocalStorage("shopping-list", storedList);
     }
+
+    removeItemFromLocalStorage() {
+        const storedList = getLocalStorage("shopping-list") || [];
+        console.log(this);
+        console.log(storedList.indexOf(this));
+        storedList.splice(storedList.indexOf(this), 1);
+        console.log(storedList);
+        setLocalStorage("shopping-list", storedList);
+    }
+
+    addItemToHTML() {
+        const list = qs("#item-list");
+        list.innerHTML += listItemTemplate(this);
+
+        if (!list.hasListener) {
+            list.hasListener = true;
+            list.addEventListener("click", (e) => {
+                if (e.target.classList.contains("mark-item")) {
+                    e.target.classList.toggle("marked");
+                } else if (e.target.classList.contains("remove-item")) {
+                    this.removeItemFromLocalStorage();
+                    e.target.closest("li").remove();
+                }
+            })
+        }
+    }
 }
+// getEventListeners(document.querySelector('#item-list'));
