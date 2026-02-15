@@ -26,10 +26,8 @@ export default class ListItem {
 
     removeItemFromLocalStorage() {
         const storedList = getLocalStorage("shopping-list") || [];
-        console.log(this);
-        console.log(storedList.indexOf(this));
-        storedList.splice(storedList.indexOf(this), 1);
-        console.log(storedList);
+        const itemIndex = storedList.findIndex((item) => item.name === this.name);
+        storedList.splice(itemIndex, 1);
         setLocalStorage("shopping-list", storedList);
     }
 
