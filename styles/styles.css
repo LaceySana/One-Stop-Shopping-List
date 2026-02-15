@@ -22,9 +22,18 @@ body {
     background-color: var(--secondary-color);
 }
 
-h2, h3, h4, h5, h6 {
+h2, h3 {
     font-family: var(--heading-font);
 }
+
+/* h4, h5, h6 {
+    font-family: var(--main-font);
+
+} */
+
+/* p {
+    font-size: larger;
+} */
 
 li {
     margin: auto 2rem;
@@ -40,6 +49,15 @@ button {
     background: none;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, .5);
     cursor: pointer;
+}
+
+input {
+    padding: 3px;
+}
+
+/* || CLASSES || */
+.hidden {
+    display: none;
 }
 
 /* || HEADER || */

@@ -8,6 +8,9 @@ const mapsKey = import.meta.env.GOOGLE_MAPS_API_KEY;
 const {Place} = await google.maps.importLibrary("places");
 
 // set event listener for an input object to trigger findLocation
+export function searchLocation(inputSelector) {
+    
+}
 
 async function findLocation(query) {
     const request = {
