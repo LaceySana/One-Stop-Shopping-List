@@ -1,10 +1,14 @@
 import ListItem, { listItemTemplate } from "./ListItem.mjs";
+import ShoppingList from "./shoppingList.mjs";
 import { getLocalStorage, loadHeaderFooter, qs, renderListWithTemplate, setClick } from "./utils.mjs";
 
 loadHeaderFooter();
 
-const storedList = getLocalStorage("shopping-list") || [];
-renderListWithTemplate(storedList, listItemTemplate, qs("#item-list"));
+// const storedList = getLocalStorage("shopping-list") || [];
+// renderListWithTemplate(storedList, listItemTemplate, qs("#item-list"));
+
+const shoppingList = new ShoppingList("shopping-list", "#item-list");
+shoppingList.init();
 
 setClick("#add-item", addNewItem);
 

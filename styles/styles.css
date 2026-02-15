@@ -124,6 +124,10 @@ h2 {
     translate: -5px -65%;
 }
 
+.remove-item::after {
+    content: "✖";
+}
+
 #list-btns {
     display: flex;
     justify-content: space-between;
