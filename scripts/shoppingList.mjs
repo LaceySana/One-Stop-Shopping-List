@@ -15,7 +15,7 @@ export default class ShoppingList {
     }
 
     listFromJson() {
-        const objList = getLocalStorage(this.key);
+        const objList = getLocalStorage(this.key) || [];
         return objList.map((obj) => new ListItem(obj.name, obj.Product, obj.isFavorite));
     }
 
@@ -29,6 +29,9 @@ export default class ShoppingList {
                 } else if (e.target.classList.contains("remove-item")) {
                     const itemIndex = this.list.findIndex((item) => item.name === e.target.closest("li").textContent);
                     const item = this.list[itemIndex];
+                    console.log(itemIndex);
+                    console.log(item);
+                    console.log(item.name);
                     item.removeItemFromLocalStorage();
                     e.target.closest("li").remove();
                 }

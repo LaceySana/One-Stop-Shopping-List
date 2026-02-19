@@ -24,9 +24,13 @@ function addNewItem() {
         inputLabel.textContent = "New Item: ";
         
         const itemInput = document.createElement("input");
+        itemInput.setAttribute("required", true);
         inputLabel.appendChild(itemInput);
         itemInput.addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
+                if (!itemInput.value) {
+                    return;
+                }
                 const newItem = new ListItem(itemInput.value);
                 newItem.init();
                 inputDiv.parentNode.removeChild(inputDiv);
@@ -43,6 +47,9 @@ function addNewItem() {
         itemInput.focus();
     
         setClick("#inputSubmit", () => {
+            if (!itemInput.value) {
+                return;
+            }
             const newItem = new ListItem(itemInput.value);
             newItem.init();
             inputDiv.parentNode.removeChild(inputDiv);
