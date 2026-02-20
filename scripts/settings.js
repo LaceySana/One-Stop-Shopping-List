@@ -5,7 +5,7 @@ import { getLocalStorage, qs, setClick, setLocalStorage } from "./utils.mjs";
 const currLocation = qs("#current-location");
 const storeDistance = qs("#store-distance");
 
-let location = getLocalStorage("location") || {};
+let location = getLocalStorage("location");
 let distance = getLocalStorage("distance") || 20000;
 
 currLocation.innerHTML = location ? location.address : "-Not Set-";
