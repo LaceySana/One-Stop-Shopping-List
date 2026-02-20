@@ -79,6 +79,26 @@ h2 {
     width: max-content;
     background-color: var(--accent-color-1);
     border: var(--primary-color) ridge 4px;
+
+    animation: titleFromLeft 1s ease;
+}
+
+@keyframes titleFromLeft {
+    0% {
+        transform: translate(-180%, 0);
+        /* transform: translate(-180%, 0) scale(100%);
+        box-shadow: none; */
+    }
+    80% {
+        transform: translate(100px, 0);
+        /* transform: translate(100px, -110%) scale(120%);
+        box-shadow: -4px 30px 5px 0px #444; */
+    }
+    100% {
+        transform: translate(0);
+        /* transform: translate(0) scale(100%);
+        box-shadow: none; */
+    }
 }
 
 #main-div {
@@ -101,6 +121,9 @@ h2 {
     min-height: max-content;
     border: var(--main-text-color) solid 1px;
     background-color: var(--accent-color-2);
+    box-shadow: 3px 3px 5px 0px;
+    z-index: 3;
+
 }
 
 .page-tab {
@@ -113,7 +136,23 @@ h2 {
     border-radius: 0 35px 35px 0;
     text-align: center;
     font-size: xx-large;
+    transform: translate(0px, 1px);
+    box-shadow: 1px 2px 4px 1px;
+    z-index: 1;
+    transition: width .8s;
 }
+
+.page-tab.current {
+    width: 60px;
+    transform: scale(110%) translate(2px, 3px);
+    box-shadow: 2px 2px 6px 3px;
+    z-index: 2;
+}
+
+.page-tab:hover {
+    width: 75px;
+}
+
 
 /* || SHOPPING LIST || */
 
@@ -127,6 +166,10 @@ h2 {
 #item-list li {
     list-style-type: none;
     font-size: larger;
+}
+
+#item-list li p {
+    display: inline-block;
 }
 
 .mark-item {
@@ -146,8 +189,13 @@ h2 {
     translate: -5px -65%;
 }
 
+.remove-item {
+    margin: 0 1rem;
+}
+
 .remove-item::after {
     content: "✖";
+    color: #a00;
 }
 
 #list-btns {
@@ -168,33 +216,122 @@ h2 {
     display: none;
 }
 
+.store-suggestions {
+    min-width: 100%;
+    display: flex;
+    /* scrollbar-color: var(--secondary-color), var(--primary-color);
+    overflow-x: scroll; */
+}
+
+.store-suggestions div {
+    display: inline-block;
+    min-width: max-content;
+    max-width: 100%;
+    margin: .5rem 1rem 1rem;
+    padding: 5px;
+    border: var(--accent-color-1) solid 1px;
+    border-radius: 3px;
+    animation: grow 2s ease-in 1 forwards;
+
+}
+
+@keyframes grow {
+    from {
+        scale: 0;
+    }
+    to {
+        scale: 100%;
+    }
+}
+
 /* || SETTINGS || */
 .setting-section {
     margin: 1rem;
     padding: 1rem;
     border-bottom: var(--main-text-color) solid 1px;
+
+    animation: borderDelay 1.5s ease-in  1 forwards;
+}
+
+/* .setting-section * {
+    animation: fromLeft 1s linear 1 forwards;
+
+} */
+
+@keyframes fromLeft {
+    from {
+        transform: translate(-100%, 0);
+    }
+    to {
+        transform: translate(0);
+    }
+}
+
+@keyframes borderDelay {
+    0% {
+        /* border: none; */
+        border-bottom-color: transparent;
+        /* transform: scale(0); */
+    }
+    80% {
+        /* border: none; */
+        border-bottom-color: transparent;
+        /* transform: scale(0); */
+    }
+    100% {
+        /* border-bottom: var(--main-text-color) solid 1px; */
+        border-bottom-color: initial;
+        /* transform: scale(100%); */
+    }
 }
 
 
 
-/* || SETTINGS - STORES || */
+/* || STORES PAGE || */
+#stores-page {
+    padding: 2rem;
+}
+
 #display-stores {
+    margin: 2rem;
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
 }
 
-#display-stores li {
-    width: 225px;
-    padding: 1rem 0;
-}
-
-.remove-store {
+/* .remove-store {
     color: #f00;
     padding: 5px 5px;
     margin: 10px 0 0;
+} */
+
+.store-card {
+    width: 250px;
+    height: max-content;
+    padding: 2rem;
+    margin: 1rem;
+    border: var(--accent-color-1) solid 2px;
+    word-break: break-all;
+    transition: scale 1s, box-shadow 1s;
 }
 
+.store-card:hover {
+    scale: 1.02;
+    box-shadow: 0 2px 10px 0px;
+}
+/* 
+@keyframes float {
+    from {
+
+    }
+    to {
+
+    }
+} */
+
+.store-card * {
+    margin: 3px auto;
+}
 
 
 /* || FOOTER || */

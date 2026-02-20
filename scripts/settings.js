@@ -1,19 +1,20 @@
 import { findLocation, searchNearby } from "./places.mjs";
-import { getLocalStorage, loadHeaderFooter, qs, setClick, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, loadHeaderFooter, milesToMeters, qs, setClick, setLocalStorage } from "./utils.mjs";
 
 loadHeaderFooter();
 
 const currLocation = qs("#current-location");
-const storesList = qs("#display-stores");
+const storeDistance = qs("#store-distance");
 
 let location = getLocalStorage("location") || {};
-let nearbyStores = getLocalStorage("nearby-stores") || [];
+let distance = getLocalStorage("distance") || 20000;
 
 currLocation.innerHTML = location ? location.address : "-Not Set-";
-displayStores(nearbyStores);
+storeDistance.innerHTML = distance ? distance : "-Not Set-";
 
 
 setClick("#edit-location", editLocation);
+setClick("#edit-distance", editDistance);
 
 function editLocation() {
     const editLocation = qs("#edit-location");
@@ -24,7 +25,6 @@ function editLocation() {
 
     div.insertAdjacentHTML("beforeend", `
     <input id="search-location" type="text" placeholder="Enter Zipcode">
-    <ul id="search-results"></ul>
     <button id="set-location">Set Location</button>
     `);
     
@@ -46,10 +46,6 @@ function editLocation() {
     })
 
     const setLocation = async function (location) {
-        if (qs("#search-results")) {
-            qs("#search-results").parentNode.removeChild(qs("#search-results"));
-        }
-
         editLocation.classList.toggle("hidden");
         currLocation.classList.toggle("hidden");
         qs("#search-location").parentNode.removeChild(qs("#search-location"));
@@ -60,48 +56,51 @@ function editLocation() {
 
         const stores = await searchNearby(location.coordinates);
         setNearbyPlaces(stores);
-        displayStores(stores);
+    }
+}
+
+function editDistance() {
+    const editDistance = qs("#edit-distance");
+    const div = editDistance.parentNode;
+
+    editDistance.classList.toggle("hidden");
+    storeDistance.classList.toggle("hidden");
+
+    div.insertAdjacentHTML("beforeend", `
+    <input id="input-distance" type="number" min="1000" max="50000" placeholder="Enter Distance in meters">
+    <button id="set-distance">Set Distance</button>
+    `);
+    
+    const distanceInput = qs("#input-distance");
+    distanceInput.addEventListener("keyup", async (e) => {
+        if (e.key === "Enter") {
+            const distance = parseInt(distanceInput.value);
+            setDistance(distance);
+        }
+    })
+    
+
+    setClick("#set-distance", async () => {
+        const distance = parseInt(distanceInput.value);
+        setDistance(distance);
+    })
+
+    const setDistance = async function (distance) {
+        editDistance.classList.toggle("hidden");
+        storeDistance.classList.toggle("hidden");
+        qs("#input-distance").parentNode.removeChild(qs("#input-distance"));
+        qs("#set-distance").parentNode.removeChild(qs("#set-distance"));
+
+        
+        setLocalStorage("distance", distance);
+        storeDistance.innerHTML = `${distance} meters`;
+        
+        const stores = await searchNearby(location.coordinates, distance);
+        setNearbyPlaces(stores);
     }
 }
 
 async function setNearbyPlaces(stores) {
+    stores = stores.map(store => ({...store.Gi, encodedURI: encodeURIComponent(store.websiteURI)}));
     setLocalStorage("nearby-stores", stores);
-}
-
-function displayStores(stores) {
-
-    storesList.innerHTML = "";
-    
-    if (!stores.length > 0) {
-        storesList.innerHTML = "No stores found.";
-        return;
-    }
-
-    for (const store of stores) {
-        storesList.insertAdjacentHTML("beforeend", `
-            <li>
-                <h4>${store.displayName}</h4>
-                <p>${store.formattedAddress}</p>
-                <input type="hidden" value="${store.id}">
-                <button class="remove-store">Remove Store</button>
-            </li>
-        `);
-    }
-
-    setClick("#display-stores", (e) => {
-        if (e.target.classList.contains("remove-store")) {
-            const store_id = e.target.closest("li").querySelector("input").value;
-            removeStore(store_id);
-        }
-    });
-}
-
-function removeStore(store_id) {
-    const storesList = getLocalStorage("nearby-stores") || [];
-    const index = storesList.findIndex(store => store.id === store_id);
-    if (index > -1) {
-        storesList.splice(index, 1);
-        setLocalStorage("nearby-stores", storesList);
-        displayStores(storesList);
-    }
 }

@@ -54,3 +54,12 @@ export async function loadHeaderFooter() {
     renderWithTemplate(templateFooter, footer);
 
 }
+
+export function milesToMeters(miles) {
+    return Math.round(miles * 1,609.344);
+}
+
+export function metersToMiles(meters) {
+    return Math.round(meters / 1,609.344);
+}
+

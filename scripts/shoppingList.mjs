@@ -27,11 +27,8 @@ export default class ShoppingList {
                 if (e.target.classList.contains("mark-item")) {
                     e.target.classList.toggle("marked");
                 } else if (e.target.classList.contains("remove-item")) {
-                    const itemIndex = this.list.findIndex((item) => item.name === e.target.closest("li").textContent);
+                    const itemIndex = this.list.findIndex((item) => item.name === e.target.closest("li").querySelector("p").textContent);
                     const item = this.list[itemIndex];
-                    console.log(itemIndex);
-                    console.log(item);
-                    console.log(item.name);
                     item.removeItemFromLocalStorage();
                     e.target.closest("li").remove();
                 }

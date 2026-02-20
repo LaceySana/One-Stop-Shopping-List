@@ -1,15 +1,15 @@
 import { getLocalStorage, qs, setLocalStorage } from "./utils.mjs";
+// import { getStoreSuggestions } from "./main.js";
 
 export function listItemTemplate(item) {
     return `
-        <li><button class="mark-item"></button>${item.name}<button class="remove-item"></button></li>
+        <li><button class="mark-item"></button><p id="item-name">${item.name}<p><button class="remove-item"></button></li>
         `;
 };
 
 export default class ListItem {
-    constructor(name, Product = null, isFavorite = false) {
+    constructor(name, isFavorite = false) {
         this.name = name;
-        this.Product = Product;
         this.isFavorite = isFavorite;
     }
 

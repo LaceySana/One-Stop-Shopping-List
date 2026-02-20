@@ -45,14 +45,20 @@ export async function searchNearby(center, radius = 20000) {
             'location',
             'formattedAddress',
             'websiteURI',
+            'types',
+            'rating',
+            'hasDelivery',
+            'paymentOptions',
+            'nationalPhoneNumber',
+            'hasRestroom'
         ],
         locationRestriction: {
             center,
             radius,
         },
         includedTypes: ["food_store", "grocery_store", "market", "supermarket", "asian_grocery_store", "butcher_shop", "store"],
-        maxResultCount: 10,
-        excludedTypes: ["restaurant", "fast_food_restaurant", "cafe", "truck_stop", "thrift_store"],
+        maxResultCount: 20,
+        excludedTypes: ["restaurant", "fast_food_restaurant", "cafe", "truck_stop"],
         rankPreference: SearchNearbyRankPreference.POPULARITY,
     };
     
@@ -60,4 +66,31 @@ export async function searchNearby(center, radius = 20000) {
     const { places } = await Place.searchNearby(request);
     
     return places;
+}
+
+export async function findStoresByType(type, center, radius) {
+
+  const request = { 
+    fields: [ 
+        "id", 
+        "displayName", 
+        "location", 
+        "formattedAddress", 
+        "websiteURI", 
+        "types", 
+        "rating"
+    ], 
+    locationRestriction: { 
+        center, 
+        radius 
+    }, 
+    includedPrimaryTypes: [type], 
+    includedTypes: [type], 
+    maxResultCount: 3, 
+    // rankPreference: SearchNearbyRankPreference.POPULARITY 
+    };
+
+  const { places } = await Place.searchNearby(request);
+
+  return places;
 }

@@ -4,15 +4,15 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Favorites | One-Stop Shopping List</title>
-        <!-- <link rel="icon" href="images/favicon.ico" type="image/x-icon" /> -->
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
         <meta name="description" content="Manage your favorite items or add them to your shopping list." />
         <meta name="author" content="Lacey Sanabria" />
         <meta property="og:title" content="Favorites | One-Stop Shopping List" />
-        <meta property="og:description" content="Manage your favorite items or add them to your shopping list." />
+        <meta property="og:description" content="Manage your preferred stores." />
         <meta property="og:url" content="https://laceysana.github.io/" />
         <link rel="stylesheet" href="styles/styles.css" />
         <link rel="stylesheet" href="styles/large.css" />
-        <script src="scripts/favorites.js" type="module"></script>
+        <script src="scripts/stores.js" type="module"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Fredericka+the+Great&family=Slackside+One&display=swap" rel="stylesheet">
@@ -20,16 +20,16 @@
     <body>
         <header id="dynamic-header"></header>
         <main>
-            <h2>Favorites</h2>
+            <h2>Stores</h2>
             <div id="main-div">
-                <div class="page-tab" id="list-tab"><a href="index.html">📃</a></div>
-                <div class="page-tab current" id="favories-tab"><a href="favorites.html">⭐</a></div>
-                <div class="page-tab" id="settings-tab"><a href="settings.html">⚙</a></div>
-                <div class="page-content">
-                    <div id="list-btns">
-                        <button class="list-btn" id="add-item">➕</button>
-                    </div>
-                    <ul id="fav-list"></ul>
+                <div class="page-tab" id="list-tab"><a href="index.html"><img src="./images/page.svg" alt="List icon." width="50"></a></div>
+                <div class="page-tab current" id="stores-tab"><a href="stores.html"><img src="./images/store.svg" alt="Store icon." width="50"></a></div>
+                <div class="page-tab" id="settings-tab"><a href="settings.html"><img src="./images/settings.svg" alt="Settings icon." width="50"></a></div>
+                <div class="page-content" id="stores-page">
+                    <h3>Top Stores Nearby:</h3>
+                    <ul id="display-stores"></ul>
+                    <!-- <button id="edit-stores">Edit</button> -->
+                    <i>*Reset location or distance to restore full list of nearby stores</i>
                 </div>
             </div>
         </main>
