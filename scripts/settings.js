@@ -51,6 +51,7 @@ function editLocation() {
         qs("#set-location").parentNode.removeChild(qs("#set-location"));
 
         setLocalStorage("location", location);
+        setLocalStorage("distance", distance);
         currLocation.innerHTML = location.address;
 
         const stores = await searchNearby(location.coordinates);
