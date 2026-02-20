@@ -70,6 +70,9 @@ function addNewItem() {
 }
 
 export async function getStoreSuggestions(item) {
+    if (!getLocalStorage("location")) {
+        return "Please set location.";
+    }
     try {
         const category = categorizeItem(item);
         const location = getLocalStorage("location").coordinates;
