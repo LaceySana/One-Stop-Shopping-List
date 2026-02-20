@@ -78,7 +78,6 @@ export async function findStoresByType(type, center, radius) {
         "formattedAddress", 
         "websiteURI", 
         "types", 
-        "rating"
     ], 
     locationRestriction: { 
         center, 

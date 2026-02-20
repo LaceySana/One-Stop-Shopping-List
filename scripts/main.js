@@ -84,7 +84,7 @@ export async function getStoreSuggestions(item) {
             suggestionsDiv +=`<div>`;
             suggestionsDiv += `
                 <h5>${store.displayName}</h5>
-                <p><strong>Rating: </strong>${store.rating}</p>
+                <p>${store.formattedAddress}</p>
             `;
             suggestionsDiv +=`</div>`;
         };

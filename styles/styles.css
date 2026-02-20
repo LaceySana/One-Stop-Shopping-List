@@ -219,6 +219,7 @@ h2 {
 .store-suggestions {
     min-width: 100%;
     display: flex;
+    flex-wrap: wrap;
     /* scrollbar-color: var(--secondary-color), var(--primary-color);
     overflow-x: scroll; */
 }
