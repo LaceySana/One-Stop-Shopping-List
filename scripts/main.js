@@ -78,7 +78,6 @@ export async function getStoreSuggestions(item) {
         const location = getLocalStorage("location").coordinates;
         const radius = parseInt(getLocalStorage("distance"));
         const storeSuggestions = await findStoresByType(category, location, radius);
-        console.log(storeSuggestions);
         let suggestionsDiv = `<div class="store-suggestions">`;
         for (let store of storeSuggestions) {
             console.log(store.displayName);
@@ -89,7 +88,8 @@ export async function getStoreSuggestions(item) {
             `;
             suggestionsDiv +=`</div>`;
         };
-            suggestionsDiv +=`</div>`;
+        suggestionsDiv +=`</div>`;
+
         return suggestionsDiv;
     } catch (error) {
         console.log("Unable to find store suggestions: " + error);
