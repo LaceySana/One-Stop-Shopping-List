@@ -55,6 +55,10 @@ input {
     padding: 3px;
 }
 
+input:focus {
+    border-width: 3px;
+}
+
 /* || CLASSES || */
 .hidden {
     display: none;
