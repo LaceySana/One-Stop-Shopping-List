@@ -318,14 +318,19 @@ h2 {
 .store-card:hover {
     scale: 1.02;
     box-shadow: 0 2px 10px 0px;
+
+    /* animation: wobble 1.5s ease 0 infinite alternate none; */
 }
-/* 
-@keyframes float {
-    from {
 
+/* @keyframes wobble {
+    0% {
+        transform: skewX(10deg);
     }
-    to {
-
+    50% {
+        transform: skewX(0);
+    }
+    100% {
+        transform: skewX(-10deg);
     }
 } */
 

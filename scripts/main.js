@@ -1,10 +1,8 @@
 import ListItem from "./ListItem.mjs";
 import ShoppingList from "./shoppingList.mjs";
-import { getLocalStorage, loadHeaderFooter, qs, renderListWithTemplate, setClick } from "./utils.mjs";
+import { getLocalStorage, qs, setClick } from "./utils.mjs";
 import { categorizeItem, itemCategories } from "./itemCategories.mjs";
 import { findStoresByType } from "./places.mjs";
-
-loadHeaderFooter();
 
 const shoppingList = new ShoppingList("shopping-list", "#item-list");
 shoppingList.init();

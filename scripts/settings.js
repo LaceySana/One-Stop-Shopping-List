@@ -1,7 +1,6 @@
 import { findLocation, searchNearby } from "./places.mjs";
-import { getLocalStorage, loadHeaderFooter, milesToMeters, qs, setClick, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, qs, setClick, setLocalStorage } from "./utils.mjs";
 
-loadHeaderFooter();
 
 const currLocation = qs("#current-location");
 const storeDistance = qs("#store-distance");

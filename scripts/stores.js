@@ -1,6 +1,5 @@
-import { getLocalStorage, loadHeaderFooter, setClick, setLocalStorage, qs } from "./utils.mjs";
+import { getLocalStorage, setClick, setLocalStorage, qs } from "./utils.mjs";
 
-loadHeaderFooter();
 
 const storesList = qs("#display-stores");
 let nearbyStores = getLocalStorage("nearby-stores") || [];
